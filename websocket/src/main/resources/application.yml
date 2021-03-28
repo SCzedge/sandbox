@@ -1,2 +1,10 @@
 server:
   port: 8080
+spring:
+  mvc:
+    view:
+#      prefix : /WEB-INF/views/
+      suffix: .html
+devtools:
+  livereload:
+    enabled: true
