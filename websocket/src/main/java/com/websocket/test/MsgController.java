@@ -5,12 +5,16 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {
+public class MsgController {
 	
 	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
-	public TestVo test() {
-		TestVo retVo = new TestVo();
+//	@SendTo("/topic/greetings")
+	public MsgVo test(MsgVo msg) {
+		
+		
+		System.out.println(msg.getMsg());
+		
+		MsgVo retVo = new MsgVo();
 		retVo.setMsg("hello world");
 		return retVo;
 	}

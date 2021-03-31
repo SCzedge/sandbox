@@ -1,12 +1,8 @@
 package com.websocket.test;
 
-public class TestVo {
+public class MsgVo {
 	private String msg;
 
-//	public TestVo(String msg) {
-//		super();
-//		this.msg = msg;
-//	}
 
 	public String getMsg() {
 		return msg;
