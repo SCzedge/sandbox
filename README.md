@@ -4,5 +4,5 @@ practice projects by java spring boot
 ## websocket
 practice project for STOMP websocket
 
-## ipo
-practice project for publishing
+## block chain
+practice project for block chain 
