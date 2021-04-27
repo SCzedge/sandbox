@@ -18,9 +18,9 @@ public class KafkaController {
         this.producer = producer;
     }
 
-    @PostMapping
+    @PostMapping("/")
     public String sendMessage(@RequestParam("message") String message){
-        producer.sendMessage(message);
+    	this.producer.sendMessage(message);
         return "success";
     }
 
