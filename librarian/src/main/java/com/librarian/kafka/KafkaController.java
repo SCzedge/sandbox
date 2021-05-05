@@ -1,4 +1,4 @@
-package com.librarian.controller;
+package com.librarian.kafka;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class KafkaController {
         this.producer = producer;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public String sendMessage(@RequestParam("message") String message){
     	this.producer.sendMessage(message);
         return "success";
