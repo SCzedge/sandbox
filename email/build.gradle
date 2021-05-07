@@ -14,8 +14,16 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+//    Email
+    implementation group: 'org.springframework', name: 'spring-context-support', version: '5.3.5'
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
 }
 
 test {
