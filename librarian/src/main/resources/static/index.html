@@ -3,39 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="../js/websocket/sockjs.js"></script>
-<script src="../js/websocket/stomp.js"></script>
 
 </head>
 <body>
-<h1>hello world</h1>
+	<h1>librarian</h1>
 
-뭐하는 프로젝트인지
-1. 카프카로 데이터 주고받기.
-
-<button onClick="connect();">connect</button>
-<button onClick="send();">send</button>
-
-
-</body>
-<script>
-function connect(){
-	let socket = new SockJS('/ws');
-	stompClient = Stomp.over(socket);
-	
-	stopmpClient.connect({},function(frame){
-		console.log('connect');
-	})
-}
-
-function send(){
-    const inp1 = document.getElementById("tx1");
-	const msg = {'msg':inp1.value}
-//     console.log(inp1.value)
-	stompClient.send("/app/hello",{},JSON.stringify(msg))
-
-}
-
-
-</script>
+	<h1>kafka</h1>
+	<h2>basic</h2>
+	<a href="kafka/basic/pdcm">produce/consume</a> &nbsp;&nbsp;||&nbsp;&nbsp;
+	<h2>kafka-connect</h2>
+	<h2>admin-api</h2>
+	<h1>websocket</h1>
+	<a href="/websocket/demo">Demo</a> &nbsp;&nbsp;||&nbsp;&nbsp;
 </html>

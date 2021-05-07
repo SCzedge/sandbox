@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/lib/websocket/sockjs.js"></script>
+<script src="/js/lib/websocket/stomp.js"></script>
+</head>
+<body>
+	<h1>produce / consume</h1>
+	<textarea id="ta1" rows="5" cols="50"></textarea>
+	<br>
+	<h3>topic :</h3>
+	<input id="inp1" type="text">
+	<button onClick="send();">produce</button>
+</body>
+<script>
+	connect();
+
+	function connect() {
+		const socket = new SockJS('/ws');
+		stompClient = Stomp.over(socket);
+
+		stompClient.connect({}, function(frame) {
+
+			stompClient.subscribe('/topic/kafka/basic/consume', function(data) {
+				receive(JSON.parse(data.body))
+			});
+		})
+	}
+
+	function send() {
+		const inp1 = document.getElementById("inp1");
+		const msg = {
+			'msg' : inp1.value
+		}
+		stompClient.send("/ws/kafka/basic/producing", {}, JSON.stringify(msg));
+	}
+	function receive(data){
+		console.log(JSON.stringify(data));
+	}
+</script>
+</html>
