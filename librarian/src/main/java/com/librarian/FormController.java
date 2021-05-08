@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
+public class FormController {
 
 	@GetMapping("/")
 	public String main() {
@@ -20,4 +20,10 @@ public class MainController {
 	public String kafkaBasicPdcm() {
 		return "/kafka/basic/pdcm.html";
 	}
+	
+	@GetMapping("/kafka/admin")
+	public String kafkaAdmin() {
+		return "/kafka/admin/admin.html";
+	}
+	
 }
