@@ -25,6 +25,9 @@ dependencies {
 	implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.7.0'
     
     testImplementation 'org.springframework.kafka:spring-kafka-test'
+    
+    
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 }
 
 test {

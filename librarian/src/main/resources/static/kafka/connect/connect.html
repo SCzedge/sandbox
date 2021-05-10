@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>kafka - connect</h1>
+	<textarea id="ta1" rows="5" cols="50"></textarea>
+	<br>
+	<input id="inp1" type="text">
+	<button onClick="fn_getStatus();">get Status</button>
+	<button onClick="fn_getPlugins();">get Plugins</button>
+	<button onClick="fn_getConnectors();">get connectors</button>
+</body>
+
+<script>
+async function fn_getStatus(){
+	const ta1 = document.getElementById('ta1')
+	const result = await fn_fetch('/kafka/connect/status','GET')
+	const data = await result.json()
+	ta1.value = JSON.stringify(data)
+}
+
+async function fn_getPlugins(){
+	const ta1 = document.getElementById('ta1')
+	const result = await fn_fetch('/kafka/connect/connector-plugins','GET')
+	const data = await result.json()
+	ta1.value = JSON.stringify(data)
+}
+
+async function fn_getConnectors(){
+	const ta1 = document.getElementById('ta1')
+	const result = await fn_fetch('/kafka/connect/connectors','GET')
+	const data = await result.json()
+	ta1.value = JSON.stringify(data)
+}
+
+
+
+
+
+
+
+async function fn_fetch(url, method, data) {
+	try {
+		const response = await fetch(url, {
+			method : method ? method : "GET",
+			headers : {
+				"Content-Type" : "application/json;charset=utf-8",
+			},
+			body : JSON.stringify(data),
+		});
+		if (response.ok) {
+			return await response;
+		}
+		throw new Error();
+	} catch (e) {
+		console.log("error : " + e);
+	}
+}
+</script>
+
+
+
+</html>
