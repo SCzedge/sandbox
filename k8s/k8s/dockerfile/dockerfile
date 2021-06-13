@@ -1,0 +1,6 @@
+FROM lpicanco/java11-alpine:latest
+
+COPY *.jar app.jar
+
+ENTRYPOINT ["java","-jar","app.jar"]
+

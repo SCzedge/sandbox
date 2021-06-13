@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  comptest:
+    image: sczedge/jdk11:0.1
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_PASSWORD: dbghtmxm1!
+    ports:
+      - "8080:8080"
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: dbghtmxm1!
