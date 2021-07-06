@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  cache:
+    type: redis
+  session:
+    store-type: redis
+    redis:
+      namespace: demian::session
+  redis:
+    host: localhost
+#    password: 
+    port: 6379
+    
+    
