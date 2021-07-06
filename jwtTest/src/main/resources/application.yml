@@ -1,0 +1,12 @@
+server:
+  port: 8081
+secretKey:
+  jwt:
+    token:
+      JWTSecretKey: dbghtmxm1!
+      expire-length: 864000000
+  encrypionProvider : 
+    AESSecretKey: aesSecretKeyTest
+devtools:
+  livereload:
+    enabled: true
