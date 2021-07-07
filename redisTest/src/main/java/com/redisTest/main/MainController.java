@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,7 +18,7 @@ public class MainController {
 	private final StringRedisTemplate stringRedisTemplate;
 	private final MainServiceImpl mainService;
 
-	private final String KEY = "banana";
+//	private final String KEY = "banana";
 
 	@Autowired
 	public MainController(StringRedisTemplate stringRedisTemplate, MainServiceImpl mainService) {
@@ -35,18 +36,16 @@ public class MainController {
 		}
 	}
 
-	@GetMapping("/redis/test/session")
-	public ResponseEntity<?> getRedisTest() {
+	@GetMapping("/redis/test/get/{key}")
+	public ResponseEntity<?> getRedisTest(@PathVariable String key) {
 		try {
 			Map<String, String> redis = new HashMap<>();
 
 			ValueOperations<String, String> stringValueOperations = stringRedisTemplate.opsForValue();
 
-			stringValueOperations.set("apple", "red");
+//			stringValueOperations.set("apple", "red");
 
-//			stringValueOperations.F
-
-			redis.put(KEY, stringValueOperations.get(KEY));
+			redis.put(key, stringValueOperations.get(key));
 
 			return ResponseEntity.ok(redis);
 		} catch (Exception e) {

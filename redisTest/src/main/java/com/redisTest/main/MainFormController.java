@@ -8,7 +8,11 @@ public class MainFormController {
 
 	@GetMapping("/")
 	public String index() {
-		return "index.html";
+		return "index";
 	}
 
+//	@GetMapping("/test/crud")
+	public String crudTest() {
+		return "/test/crud/crud";
+	}
 }
