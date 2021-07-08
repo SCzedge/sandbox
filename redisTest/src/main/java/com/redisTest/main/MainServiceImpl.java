@@ -14,6 +14,7 @@ public class MainServiceImpl {
 	public MainServiceImpl(MainDao mainDao) {
 		this.mainDao = mainDao;
 	}
+	
 	@Cacheable(value="test")
 	public String getCahceGen() {
 		return mainDao.getCahceGen();

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public class MainDao {
 	public String getCahceGen() {
 		String uuid =UUID.randomUUID().toString(); 
-		System.out.println("genUUID"+uuid);
+		System.out.println("genUUID : "+uuid);
 		return uuid;
 	}
 }
