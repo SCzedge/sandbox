@@ -8,6 +8,7 @@ public class MainFormController {
 
 	@GetMapping("/")
 	public String main() {
+		System.out.println("main");
 		return "index";
 	}
 }

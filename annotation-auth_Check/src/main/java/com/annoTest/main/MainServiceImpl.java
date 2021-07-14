@@ -14,6 +14,7 @@ public class MainServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserVo loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("loadUserByUsername");
 		return (UserVo) mainDao.getUser();
 	}
 }
