@@ -2,8 +2,8 @@ mail:
   host: smtp.gmail.com
   port: 25
   protocol: smtp
-  username: factoryabems@gmail.com
-  password: youhost1!
+#  username: factoryabems@gmail.com
+#  password: youhost1!
   smtp:
     start-tls-enable: true
     auth: true

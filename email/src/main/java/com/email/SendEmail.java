@@ -29,8 +29,8 @@ public class SendEmail {
                 helper.setTo("yjcho@youhost.co.kr");
                 helper.setSubject("EmailTest");
 
-                String body="TEST_BODY";
-                helper.setText(body,true);
+                String body = "TEST_BODY";
+                helper.setText(body, true);
 
             }
         };
