@@ -13,7 +13,7 @@ spring boot - kafka
 ## jwtTest
 jwt login
 
-## email
+## email - done
 
 ## k8s
 
