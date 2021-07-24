@@ -2,10 +2,24 @@
 practice projects by java spring boot
 
 ## websocket
-practice project for STOMP websocket
+STOMP websocket
 
 ## block chain
-practice project for block chain 
+block chain 
 
 ## librarian
-practice projcet for spring boot - kafka
+spring boot - kafka
+
+## jwtTest
+jwt login
+
+## email
+
+## k8s
+
+## redisTest - done
+- redis session
+- redis cache
+
+## annotation-auth_check (drop)
+- deprecated.
