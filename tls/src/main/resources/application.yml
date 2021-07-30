@@ -1,13 +1,13 @@
 server:
   port: 8080
-#  ssl:
-#    enabled: true
-#    enabled-protocols:
-#      - TLSv1.2
-#      - TLSv1.3
-#    key-alias:
-#    key-password:
-#    key-store:
-#    key-store-password:
-#    trust-store:
-#    trust-store-password:
+  ssl:
+    enabled: true
+    enabled-protocols:
+      - TLSv1.2
+      - TLSv1.3
+    key-alias: tlstest
+    key-password: dbghtmxm1!
+    key-store: tlstest.pkcs12
+    key-store-password: dbghtmxm1!
+    trust-store: tlstesttrust.pkcs12
+    trust-store-password: dbghtmxm1!
