@@ -1,0 +1,13 @@
+server:
+  port: 8080
+#  ssl:
+#    enabled: true
+#    enabled-protocols:
+#      - TLSv1.2
+#      - TLSv1.3
+#    key-alias:
+#    key-password:
+#    key-store:
+#    key-store-password:
+#    trust-store:
+#    trust-store-password:
