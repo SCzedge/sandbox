@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>kafka.Admin</h1>
+	<h2>topic list</h2>
+	<textarea id="ta1" rows="15" cols="50" readonly></textarea>
+	<br>
+	<input type="text" id="inp1">
+	<br>
+	<button onClick="fn_getTopics();">get topic</button>
+	<button onClick="fn_createTopic();">create topic</button>
+	<button onClick="fn_deleteTopic();">delete topic</button>
+	<script>
+		async function fn_getTopics() {
+			const ta1 = document.getElementById('ta1');
+
+			const result = await
+			fn_fetch('/kafka/admin/topics');
+			const data = await
+			result.json();
+			ta1.value = data.join('\n');
+		}
+
+		async function fn_createTopic() {
+			const inp1 = document.getElementById('inp1');
+			const data = inp1.value
+			console.log(data);
+			const result = await fn_fetch('/kafka/admin/topic', 'POST',data)
+		}
+		async function fn_deleteTopic() {
+			const inp1 = document.getElementById('inp1');
+			const data = inp1.value
+			console.log(data);
+			const result = await fn_fetch('/kafka/admin/topic', 'DELETE',data)
+		}
+
+		async function fn_fetch(url, method, data) {
+			try {
+				const response = await
+				fetch(url, {
+					method : method ? method : "GET",
+					headers : {
+						"Content-Type" : "application/json;charset=utf-8",
+					},
+					body : JSON.stringify(data),
+				});
+				if (response.ok) {
+					return await response;
+				}
+				throw new Error();
+			} catch (e) {
+				console.log("error : " + e);
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/lib/websocket/sockjs.js"></script>
+<script src="/js/lib/websocket/stomp.js"></script>
+</head>
+<body>
+	<h1>Websocket</h1>
+	<textarea id="ta1" rows="5" cols="50"></textarea>
+	<br>
+	<input id="inp1" type="text">
+	<button onClick="send();">send</button>
+	<button onClick="connect();">connect</button>
+</body>
+<script>
+	function connect() {
+		const socket = new SockJS('/ws');
+		stompClient = Stomp.over(socket);
+
+		stompClient.connect({}, function(frame) {
+
+			stompClient.subscribe('/topic/hello', function(data) {
+// 				console.log(JSON.stringify(data));
+				receive(JSON.parse(data.body))
+
+			});
+		})
+	}
+
+	function send() {
+		const inp1 = document.getElementById("inp1");
+		const msg = {
+			'msg' : inp1.value
+		}
+		stompClient.send("/ws/hello", {}, JSON.stringify(msg));
+	}
+	
+	
+	function receive(data){
+		console.log("receive : "+JSON.stringify(data));
+		const ta1 = document.getElementById('ta1') 		
+		ta1.append(data.msg)
+	}
+</script>
+</html>

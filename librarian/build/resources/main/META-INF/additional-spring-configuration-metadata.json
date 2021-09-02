@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "restTemplate.factory.read-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'restTemplate.factory.read-timeout'"
+  },
+  {
+    "name": "restTemplate.factory.connectTimeout",
+    "type": "java.lang.String",
+    "description": "A description for 'restTemplate.factory.connectTimeout'"
+  },
+  {
+    "name": "restTemplate.httpClient.max-conn-total",
+    "type": "java.lang.String",
+    "description": "A description for 'restTemplate.httpClient.max-conn-total'"
+  },
+  {
+    "name": "restTemplate.httpClient.maxConnPerRoute",
+    "type": "java.lang.String",
+    "description": "A description for 'restTemplate.httpClient.maxConnPerRoute'"
+  },
+  {
+    "name": "spring.kafka.connect.connect-servers",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.kafka.connect.connect-servers'"
+  }
+]}

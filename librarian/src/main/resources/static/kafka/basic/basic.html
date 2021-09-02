@@ -38,6 +38,8 @@
 	}
 	function receive(data){
 		console.log(JSON.stringify(data));
+		const ta1 = document.getElementById('ta1')
+		ta1.append(data.msg+"\n")
 	}
 </script>
 </html>

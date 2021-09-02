@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  zookeeper:
+    container_name: zookeeper
+    build: 
+      context: .
+      dockerfile: alpzoo.dockerfile
+    ports:
+      - "2181:2181"
+    # environment:
+    #   ZOOK_ADMIN_PORT: 8085
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  kafka:
+    container_name: kafka
+    build: 
+      context: .
+      dockerfile: alpkaf.dockerfile
+    depends_on: 
+      - zookeeper
+    ports:
+      - "9092:9092"
+    # environment:
+    #   KAFKA_ADVERTISED_LISTENERS: kafka:9092
+    #   ZOOK_CLIENT_PORT: 2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  kafka-connect:
+    container_name: kafka-connect
+    build: 
+      context: .
+      dockerfile: alpkafcon.dockerfile
+    depends_on: 
+      - zookeeper
+      - kafka
+    ports:
+      - "8083:8083"
+    # environment:
+    #   KAFKA_ADVERTISED_LISTENERS: kafka:9092
+    #   KAFCON_REST_ADVERTISED_HOST_NAME: localhost
+    #   KAFCON_REST_ADVERTISED_PORT: 8083
+    #   KAFCON_PLUGIN_PATH: /opt/kafka_2.12-2.8.0/plugins
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+  kafkacat:
+    image: confluentinc/cp-kafkacat
+    command: sleep infinity

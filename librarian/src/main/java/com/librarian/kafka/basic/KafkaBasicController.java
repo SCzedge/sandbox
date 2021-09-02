@@ -25,12 +25,14 @@ public class KafkaBasicController {
 
 	@MessageMapping("/kafka/basic/producing")
 	public void producing(@Payload String msg) {
+		System.out.println(msg);
 		kafkaTemplate.send("basic", msg);
 	}
 
 	@KafkaListener(topics = "basic", groupId = "foo")
 	public void consume(String msg) {
-		stompTemplate.convertAndSend("/topic/group", msg);
+		System.out.println(msg);
+		stompTemplate.convertAndSend("/topic/kafka/basic/consume", msg);
 	}
 
 }

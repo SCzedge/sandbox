@@ -1,7 +1,8 @@
 server:
-  port: 8080
+  port: 8084
   ssl:
     enabled: true
+    protocol: TLS
     enabled-protocols:
       - TLSv1.2
       - TLSv1.3
