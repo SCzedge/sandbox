@@ -2,7 +2,8 @@ package com.springbatch.model;
 
 public class Data {
     private int idx;
-    private String v;
+    private String type;
+    private String val;
 
     public int getIdx() {
         return idx;
@@ -12,19 +13,28 @@ public class Data {
         this.idx = idx;
     }
 
-    public String getV() {
-        return v;
+    public String getType() {
+        return type;
     }
 
-    public void setV(String v) {
-        this.v = v;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getVal() {
+        return val;
+    }
+
+    public void setVal(String val) {
+        this.val = val;
     }
 
     @Override
     public String toString() {
-        return "data{" +
+        return "Data{" +
                 "idx=" + idx +
-                ", v='" + v + '\'' +
+                ", type='" + type + '\'' +
+                ", val='" + val + '\'' +
                 '}';
     }
 }

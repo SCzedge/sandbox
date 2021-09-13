@@ -10,9 +10,11 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
 import org.springframework.batch.item.database.PagingQueryProvider;
+import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JdbcPagingItemReaderBuilder;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -24,6 +26,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -81,6 +84,11 @@ public class JobConfig {
         };
     }
 
+
+
+
+
+
     @Bean
     public Job jdbcPagingItemRederJob() throws Exception {
         return jobBuilderFactory.get("jdbcPagingItemRederJob")
@@ -113,8 +121,16 @@ public class JobConfig {
     }
 
     @Bean
-    public ItemWriter<Data> jdbcPagingItemWriter() {
-        return null;
+    public JdbcBatchItemWriter<Data> jdbcPagingItemWriter() {
+//        for (Data data : list){
+//            log.info("Cur Data ={}",data);
+//        }
+        return new JdbcBatchItemWriterBuilder<Data>()
+                .dataSource(dataSource)
+                .sql("insert into tbl_sum(type,val) values(:type,:val)")
+                .beanMapped()
+                .build()
+                ;
     }
 
 
@@ -122,14 +138,15 @@ public class JobConfig {
     public PagingQueryProvider sumQueryProvider() throws Exception {
         SqlPagingQueryProviderFactoryBean queryProvider = new SqlPagingQueryProviderFactoryBean();
         queryProvider.setDataSource(dataSource);
-        queryProvider.setSelectClause("select type, sum(val)");
+        queryProvider.setSelectClause("select idx, type, sum(val) val, :faccode");
         queryProvider.setFromClause("tbl_data");
 //        queryProvider.setWhereClause("");
         queryProvider.setGroupClause("group by type");
 
-//        Map<String, Order> sortKeys = new HashMap<>(1);
-//        sortKeys.put("id", Order.ASCENDING);
+        Map<String, Order> sortKeys = new HashMap<>(1);
+        sortKeys.put("idx", Order.ASCENDING);
 
+        queryProvider.setSortKeys(sortKeys);
         return queryProvider.getObject();
     }
 }
