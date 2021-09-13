@@ -14,7 +14,7 @@ public class SimpleTasklet {
 
     @Bean
     @StepScope
-    public Tasklet simpleTasklet(@Value("#{jobParameters[requestedDate]}") String requestedDate) {
+    public Tasklet tasklet(@Value("#{jobParameters[requestedDate]}") String requestedDate) {
         return (contribution, chunkContext) -> {
             log.info(">>>>> tasklet");
             log.info(">>>>> requestedDate = {}", requestedDate);

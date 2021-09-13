@@ -31,8 +31,6 @@ public class Jobs {
                 .build();
     }
 
-
-
     @Bean
     public Job jdbcPagingItemRederJob() throws Exception {
         return jobBuilderFactory.get("jdbcPagingItemReaderJob")

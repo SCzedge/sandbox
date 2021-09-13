@@ -39,7 +39,7 @@ public class SimpleStep {
     @JobScope
     public Step simpleStep2(@Value("#{jobParameters[requestedDate]}") String requestedDate) {
         return stepBuilderFactory.get("simpleStep2")
-                .tasklet(simpleTasklet.simpleTasklet(requestedDate))
+                .tasklet(simpleTasklet.tasklet(requestedDate))
                 .build();
     }
 
