@@ -1,7 +1,7 @@
-package com.springbatch.step;
+package com.springbatch.batch.step;
 
+import com.springbatch.batch.tasklet.JdbcPagingTasklet;
 import com.springbatch.model.Data;
-import com.springbatch.tasklet.JdbcPagingTasklet;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;

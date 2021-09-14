@@ -1,6 +1,6 @@
-package com.springbatch.step;
+package com.springbatch.batch.step;
 
-import com.springbatch.tasklet.SimpleTasklet;
+import com.springbatch.batch.tasklet.SimpleTasklet;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobScope;

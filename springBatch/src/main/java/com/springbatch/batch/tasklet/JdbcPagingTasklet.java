@@ -1,6 +1,8 @@
-package com.springbatch.tasklet;
+package com.springbatch.batch.tasklet;
 
 import com.springbatch.model.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
@@ -16,6 +18,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+@Slf4j
 @Configuration
 public class JdbcPagingTasklet {
 
@@ -39,8 +42,13 @@ public class JdbcPagingTasklet {
                 .rowMapper(new BeanPropertyRowMapper<>(Data.class))
                 .queryProvider(sumQueryProvider())
                 .parameterValues(parameterValues)
-                .name("jdbcPaginItemReader")
+                .name("jdbcPagingItemReader")
                 .build();
+    }
+
+    @Bean
+    public ItemProcessor<Data,Data> jdbcPagingItemProcessor()throws Exception{
+        return null;
     }
 
     @Bean

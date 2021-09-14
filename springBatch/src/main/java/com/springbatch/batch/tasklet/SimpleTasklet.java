@@ -1,4 +1,4 @@
-package com.springbatch.tasklet;
+package com.springbatch.batch.tasklet;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.configuration.annotation.StepScope;
