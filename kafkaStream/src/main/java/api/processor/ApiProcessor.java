@@ -1,11 +1,11 @@
-import com.google.gson.Gson;
+package api.processor;
+
 import org.apache.kafka.streams.processor.Processor;
 import org.apache.kafka.streams.processor.ProcessorContext;
 
-public class CustomProcessor implements Processor<String, String> {
+public class ApiProcessor implements Processor<String, String> {
     private ProcessorContext context;
 
-    private final static Gson gson = new Gson();
 
     @Override
     public void init(ProcessorContext context) {
@@ -15,7 +15,8 @@ public class CustomProcessor implements Processor<String, String> {
     @Override
     public void process(String key, String value) {
         try {
-            //some logic
+            System.out.println(value);
+            context.forward(key,value);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -26,5 +27,4 @@ public class CustomProcessor implements Processor<String, String> {
     @Override
     public void close() {
     }
-
 }
