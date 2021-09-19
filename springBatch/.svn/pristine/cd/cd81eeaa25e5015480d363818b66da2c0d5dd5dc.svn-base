@@ -48,10 +48,7 @@ public class JdbcPagingTasklet {
 
     @Bean
     public ItemProcessor<Data,Data> jdbcPagingItemProcessor()throws Exception{
-        return list->{
-            log.info(list.toString());
-            return list;
-        };
+        return null;
     }
 
     @Bean

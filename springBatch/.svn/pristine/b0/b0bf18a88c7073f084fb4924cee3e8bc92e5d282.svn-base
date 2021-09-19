@@ -26,7 +26,6 @@ public class JdbcPagingStep {
         return stepBuilderFactory.get("jdbcPagingItemRederStep")
                 .<Data, Data>chunk(CHUNK_SIZE)
                 .reader(tasklet.jdbcPagingItemReader())
-                .processor(tasklet.jdbcPagingItemProcessor())
                 .writer(tasklet.jdbcPagingItemWriter())
                 .build();
     }
