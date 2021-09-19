@@ -1,7 +1,6 @@
 package api.topology;
 
 import api.processor.ApiProcessor;
-import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.Topology;
 
 public class ApiTopology {

@@ -1,4 +1,4 @@
-import api.topology.ApiTopology;
+import dsl.kStream.KStreamTopology;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsConfig;
@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-public class main {
+public class mainApplication {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private static final String APP_ID = "sinkTest";
     private static final String BOOTSTRAP_SERVER = "localhost:9092";
@@ -20,8 +21,11 @@ public class main {
 
 
         try {
-            ApiTopology api = new ApiTopology();
-            Topology topology = api.GetApiTopology(SOURCE, SINK);
+//            ApiTopology api = new ApiTopology();
+//            Topology topology = api.GetApiTopology(SOURCE, SINK);
+
+            KStreamTopology kStreamTopology = new KStreamTopology();
+            Topology topology = kStreamTopology.splitStream(SOURCE, SINK);
 
             KafkaStreams stream = new KafkaStreams(topology, getProp());
             stream.start();
