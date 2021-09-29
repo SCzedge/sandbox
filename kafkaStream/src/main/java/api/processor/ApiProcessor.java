@@ -6,7 +6,6 @@ import org.apache.kafka.streams.processor.ProcessorContext;
 public class ApiProcessor implements Processor<String, String> {
     private ProcessorContext context;
 
-
     @Override
     public void init(ProcessorContext context) {
         this.context = context;

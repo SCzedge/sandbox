@@ -10,7 +10,6 @@ public class ApiTopology {
         topology.addSource("Source", source);
         topology.addProcessor("Processor", ApiProcessor::new, "Source");
         topology.addSink("Sink", sink, "Processor");
-
         return topology;
     }
 }

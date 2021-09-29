@@ -1,8 +1,11 @@
-import dsl.kStream.KStreamTopology;
+import dsl.kTable.KTableToplogy;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.*;
+import org.apache.kafka.streams.kstream.KTable;
+import org.apache.kafka.streams.kstream.Materialized;
+import org.apache.kafka.streams.state.KeyValueIterator;
+import org.apache.kafka.streams.state.QueryableStoreTypes;
+import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,26 +24,37 @@ public class mainApplication {
 
 
         try {
-//            ApiTopology api = new ApiTopology();
-//            Topology topology = api.GetApiTopology(SOURCE, SINK);
 
-            KStreamTopology kStreamTopology = new KStreamTopology();
-            Topology topology = kStreamTopology.splitStream(SOURCE, SINK);
+
+//            Topology topology = new ApiTopology().GetApiTopology(SOURCE, SINK);
+
+//            Topology topology = new KStreamTopology().splitStream(SOURCE, SINK);
+
+            Topology topology = new KTableToplogy().ktable(SOURCE, SINK);
 
             KafkaStreams stream = new KafkaStreams(topology, getProp());
             stream.start();
+
+
+
+//            ReadOnlyKeyValueStore<Object, Object> view = stream.store(StoreQueryParameters.fromNameAndType("k2kc", QueryableStoreTypes.keyValueStore()));
+//            KeyValueIterator<Object, Object> address = view.all();
+//            address.forEachRemaining(keyValue -> logger.info("log : "+keyValue.toString()));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
+
     public static Properties getProp() {
         Properties props = new Properties();
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, APP_ID);
+        props.put(StreamsConfig.APPLICATION_ID_CONFIG,APP_ID);
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+//        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.Long().getClass());
         return props;
     }
 }
