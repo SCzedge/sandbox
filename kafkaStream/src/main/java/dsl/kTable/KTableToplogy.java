@@ -22,22 +22,13 @@ public class KTableToplogy {
         StreamsBuilder builder = new StreamsBuilder();
 
         KStream<String, String> stream = builder.stream(source,Consumed.with(stringSerde,stringSerde));
+
         KTable<String, Long> table = stream
                 .groupBy((key, value) -> key).count();
 
         table.toStream()
                 .peek((K,V)-> logger.info("key: {}, value: {}",K,V))
                 .to(sink);
-
-
-//        KTable<String, String> table = builder.table(source,
-//                Materialized.<String, String, KeyValueStore<Bytes, byte[]>>as(sink));
-//        table.toStream()
-////                .groupBy((key, value) -> key).count();
-//                .peek((K,V)-> logger.info("key : {}, value : {}",K,V))
-//                .to(sink);
-
-
 
         Topology topology = builder.build();
 

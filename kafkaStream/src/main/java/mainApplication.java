@@ -35,12 +35,6 @@ public class mainApplication {
             KafkaStreams stream = new KafkaStreams(topology, getProp());
             stream.start();
 
-
-
-//            ReadOnlyKeyValueStore<Object, Object> view = stream.store(StoreQueryParameters.fromNameAndType("k2kc", QueryableStoreTypes.keyValueStore()));
-//            KeyValueIterator<Object, Object> address = view.all();
-//            address.forEachRemaining(keyValue -> logger.info("log : "+keyValue.toString()));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
