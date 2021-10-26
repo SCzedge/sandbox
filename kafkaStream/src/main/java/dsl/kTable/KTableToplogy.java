@@ -20,7 +20,6 @@ public class KTableToplogy {
         final Serde<Long> longSerde = Serdes.Long();
 
         StreamsBuilder builder = new StreamsBuilder();
-
         KStream<String, String> stream = builder.stream(source,Consumed.with(stringSerde,stringSerde));
 
         KTable<String, Long> table = stream
@@ -35,16 +34,4 @@ public class KTableToplogy {
         return topology;
     }
 
-
-    public void terst() {
-        StreamsBuilder builder = new StreamsBuilder();
-
-        GlobalKTable<String, Long> wordCounts = builder.globalTable(
-                "word-counts-input-topic",
-                Materialized.<String, Long, KeyValueStore<Bytes, byte[]>>as(
-                        "word-counts-global-store" /* table/store name */)
-                        .withKeySerde(Serdes.String()) /* key serde */
-                        .withValueSerde(Serdes.Long()) /* value serde */
-        );
-    }
 }
