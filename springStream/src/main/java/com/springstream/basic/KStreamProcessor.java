@@ -6,9 +6,9 @@ import org.springframework.cloud.stream.annotation.Output;
 
 public interface KStreamProcessor {
 
-        @Input("input")
+        @Input("input1")
         KStream<?, ?> input();
 
-        @Output("output")
+        @Output("output1")
         KStream<?, ?> output();
 }
