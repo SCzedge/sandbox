@@ -11,4 +11,7 @@ public interface KStreamProcessor {
 
         @Output("output1")
         KStream<?, ?> output();
+
+        @Input("input2")
+        KStream<String,String> input2();
 }

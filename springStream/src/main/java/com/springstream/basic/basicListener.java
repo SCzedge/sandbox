@@ -25,7 +25,7 @@ import java.util.function.Function;
 @Slf4j
 @EnableBinding(KStreamProcessor.class)
 public class basicListener {
-    public static final int WINDOW_SIZE_MS = 30_000;
+    public static final int WINDOW_SIZE_MS = 30000;
 
     @StreamListener("input1")
     @SendTo("output1")
@@ -45,4 +45,7 @@ public class basicListener {
                 .toStream()
                 .map((key, value) -> new KeyValue<>(null, new WordCount(key.key(), value, new Date(key.window().start()), new Date(key.window().end()))));
     }
+
+
+
 }
