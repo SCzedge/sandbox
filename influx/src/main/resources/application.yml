@@ -1,8 +1,8 @@
 spring:
-  influx:
-    url: http://localhost:8086
   influxdb:
+    url: http://localhost:8086
     database: mybucket
     retention-policy: autogen
-    username: yjcho
+    username: sczedge
     password: dbghtmxm1!
+
