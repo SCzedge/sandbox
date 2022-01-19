@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
 @Data
 @Measurement(name = "Raw-Data")
 public class RawData {
+
     @TimeColumn
     @Column(name = "unit",tag = true)
-//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-//    @JsonSerialize(using = LocalDateTimeSerializer.class)
     String unit;
 
     @Column(name = "pointId", tag = true)

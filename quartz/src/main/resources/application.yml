@@ -1,0 +1,11 @@
+server:
+  port: 8080
+spring:
+  #Mariadb
+  datasource:
+    hikari:
+      #      jdbc-url: jdbc:log4jdbc:mariadb://114.108.185.227:3306/batch?characterEncoding=UTF-8&serverTimezone=UTC
+      #      jdbc-url: jdbc:log4jdbc:mariadb://mariadb-out.mariadb-rdb:3306/batch?characterEncoding=UTF-8&serverTimezone=UTC
+      jdbc-url: jdbc:log4jdbc:mariadb://db.factorylab.co.kr:32194/batch?characterEncoding=UTF-8&serverTimezone=UTC
+      username: root
+      password: dbghtmxm1!

@@ -1,0 +1,13 @@
+server:
+  port: 8081
+influx:
+  logLevel: BODY # The log level for logging the HTTP request and HTTP response. (Default: NONE)
+  readTimeout: 5s # Read timeout for OkHttpClient. (Default: 10s)
+  writeTimeout: 5s # Write timeout for OkHttpClient. (Default: 10s)
+  connectTimeout: 5s # Connection timeout for OkHttpClient. (Default: 10s)
+  url: http://localhost:28086
+  username : yjcho
+  password: dbghtmxm1!
+  org: youhost
+  bucket: mybucket
+  token: ivJesNUeJw-ya7bDqLA8sf0gBeVnIP1c9jLen_IIynGDKp5xia6mSR89TEyLqx11qWALXA3cvNx15APQpQjx7g==
