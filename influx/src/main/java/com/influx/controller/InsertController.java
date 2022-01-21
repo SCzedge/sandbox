@@ -1,8 +1,10 @@
 package com.influx.controller;
 
 import com.google.gson.Gson;
-import com.influx.model.RawData;
+import com.influx.model.Sample;
+import com.influx.service.InsertService;
 import com.influx.service.RawDataService;
+import com.influx.service.SelectService;
 import lombok.extern.slf4j.Slf4j;
 import org.influxdb.annotation.Measurement;
 import org.springframework.http.ResponseEntity;
@@ -17,21 +19,21 @@ import java.util.List;
 @Slf4j
 @RestController
 public class InsertController {
-    private final RawDataService rawDataService;
 
-    public InsertController(RawDataService rawDataService) {
-        this.rawDataService = rawDataService;
+    private final InsertService insertService;
+
+    public InsertController(InsertService insertService) {
+        this.insertService = insertService;
     }
 
     private final Gson gson = new Gson();
     private final DateTimeFormatter dateTimeFormatPattern =DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-
     @GetMapping("/test")
     public ResponseEntity<?> test() {
         try {
-            RawData rawData = new RawData();
-            String name = rawData.getClass().getAnnotation(Measurement.class).name();
+            Sample sample = new Sample();
+            String name = sample.getClass().getAnnotation(Measurement.class).name();
             return ResponseEntity.ok(name);
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,15 +44,14 @@ public class InsertController {
     @GetMapping("/insert")
     public ResponseEntity<?> insert() {
         try {
-            RawData rawData = new RawData();
-//            rawData.setUnit(LocalDateTime.now());
-            rawData.setUnit(LocalDateTime.now().format(dateTimeFormatPattern));
-            rawData.setPointId("1");
-            rawData.setValue(0.1);
-            rawData.setRmk("for the horde");
+            Sample sample = new Sample();
+            sample.setDatetime(LocalDateTime.now().format(dateTimeFormatPattern));
+            sample.setUnit("1");
+            sample.setValue(0.1);
+            sample.setRmk("for the horde");
 
-            log.info("rawData : {}", gson.toJson(rawData));
-            rawDataService.insert(rawData);
+            log.info("sample : {}", gson.toJson(sample));
+            insertService.insert(sample);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,23 +63,23 @@ public class InsertController {
     @GetMapping("/insert/batch")
     public ResponseEntity<?> batchInsert() {
         try {
-            List<RawData> rawDataList = new ArrayList<>();
+            List<Sample> sampleList = new ArrayList<>();
 
-            RawData rawData1 = new RawData();
-            rawData1.setUnit(LocalDateTime.now().format(dateTimeFormatPattern));
-            rawData1.setPointId("2");
-            rawData1.setValue(0.2);
-            rawData1.setRmk("for the horde");
-            rawDataList.add(rawData1);
+            Sample sample1 = new Sample();
+            sample1.setDatetime(LocalDateTime.now().format(dateTimeFormatPattern));
+            sample1.setUnit("2");
+            sample1.setValue(0.2);
+            sample1.setRmk("for the horde");
+            sampleList.add(sample1);
 
-            RawData rawData2 = new RawData();
-            rawData2.setUnit(LocalDateTime.now().format(dateTimeFormatPattern));
-            rawData2.setPointId("3");
-            rawData2.setValue(0.3);
-            rawData2.setRmk("for the horde");
-            rawDataList.add(rawData2);
+            Sample sample2 = new Sample();
+            sample2.setDatetime(LocalDateTime.now().format(dateTimeFormatPattern));
+            sample2.setUnit("3");
+            sample2.setValue(0.3);
+            sample2.setRmk("for the horde");
+            sampleList.add(sample2);
 
-            rawDataService.batchInsert(rawDataList);
+            insertService.batchInsert(sampleList);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             e.printStackTrace();

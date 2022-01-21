@@ -1,7 +1,7 @@
 package com.influx.controller;
 
 import com.google.gson.Gson;
-import com.influx.service.RawDataService;
+import com.influx.service.SelectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +12,10 @@ import java.time.format.DateTimeFormatter;
 @Slf4j
 @RestController
 public class SelectController {
-    private final RawDataService rawDataService;
+    private final SelectService selectService;
 
-    public SelectController(RawDataService rawDataService) {
-        this.rawDataService = rawDataService;
+    public SelectController(SelectService selectService) {
+        this.selectService = selectService;
     }
 
     private final Gson gson = new Gson();
@@ -24,7 +24,7 @@ public class SelectController {
     @GetMapping("/select/")
     public ResponseEntity<?> select() {
         try {
-            return ResponseEntity.ok(rawDataService.select());
+            return ResponseEntity.ok(selectService.select());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
@@ -34,7 +34,7 @@ public class SelectController {
     @GetMapping("/select/param")
     public ResponseEntity<?> selectParam() {
         try {
-            return ResponseEntity.ok(rawDataService.selectParam());
+            return ResponseEntity.ok(selectService.selectParam());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
@@ -44,11 +44,10 @@ public class SelectController {
     @GetMapping("/select/range")
     public ResponseEntity<?> selectRange() {
         try {
-            return ResponseEntity.ok(rawDataService.selectRange());
+            return ResponseEntity.ok(selectService.selectRange());
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
     }
-
 }
