@@ -1,0 +1,24 @@
+22-02-09 12:06:11 INFO  [main] [RawDataMoverApplication:55] | Starting RawDataMoverApplication using Java 11.0.8 on DESKTOP-T73PBF3 with PID 45828 (C:\Users\Administrator\Desktop\rawDataMover\build\classes\java\main started by Administrator in C:\Users\Administrator\Desktop\rawDataMover)
+22-02-09 12:06:11 INFO  [main] [RawDataMoverApplication:637] | No active profile set, falling back to default profiles: default
+22-02-09 12:06:11 INFO  [background-preinit] [Version:30] | HV000001: Hibernate Validator 5.3.6.Final
+22-02-09 12:06:12 INFO  [main] [TomcatWebServer:108] | Tomcat initialized with port(s): 8080 (http)
+22-02-09 12:06:12 INFO  [main] [Http11NioProtocol:173] | Initializing ProtocolHandler ["http-nio-8080"]
+22-02-09 12:06:12 INFO  [main] [StandardService:173] | Starting service [Tomcat]
+22-02-09 12:06:12 INFO  [main] [StandardEngine:173] | Starting Servlet engine: [Apache Tomcat/9.0.56]
+22-02-09 12:06:12 INFO  [main] [[/]:173] | Initializing Spring embedded WebApplicationContext
+22-02-09 12:06:12 INFO  [main] [ServletWebServerApplicationContext:290] | Root WebApplicationContext: initialization completed in 843 ms
+22-02-09 12:06:12 INFO  [main] [HikariDataSource:80] | HikariPool-1 - Starting...
+22-02-09 12:06:12 INFO  [main] [HikariDataSource:82] | HikariPool-1 - Start completed.
+22-02-09 12:06:12 INFO  [main] [HikariDataSource:80] | HikariPool-2 - Starting...
+22-02-09 12:06:12 INFO  [main] [HikariDataSource:82] | HikariPool-2 - Start completed.
+22-02-09 12:06:12 INFO  [main] [HikariDataSource:80] | HikariPool-3 - Starting...
+22-02-09 12:06:12 INFO  [main] [HikariDataSource:82] | HikariPool-3 - Start completed.
+22-02-09 12:06:13 INFO  [main] [Http11NioProtocol:173] | Starting ProtocolHandler ["http-nio-8080"]
+22-02-09 12:06:13 INFO  [main] [TomcatWebServer:220] | Tomcat started on port(s): 8080 (http) with context path ''
+22-02-09 12:06:13 INFO  [main] [RawDataMoverApplication:61] | Started RawDataMoverApplication in 2.192 seconds (JVM running for 2.921)
+22-02-09 12:06:17 INFO  [http-nio-8080-exec-2] [[/]:173] | Initializing Spring DispatcherServlet 'dispatcherServlet'
+22-02-09 12:06:17 INFO  [http-nio-8080-exec-2] [DispatcherServlet:525] | Initializing Servlet 'dispatcherServlet'
+22-02-09 12:06:17 INFO  [http-nio-8080-exec-2] [DispatcherServlet:547] | Completed initialization in 1 ms
+22-02-09 12:06:17 INFO  [http-nio-8080-exec-2] [MoverMapper:31] | 1
+22-02-09 12:06:17 INFO  [http-nio-8080-exec-2] [MoverMapper:32] | 1
+22-02-09 12:06:17 INFO  [http-nio-8080-exec-2] [MoverMapper:33] | 1
