@@ -37,4 +37,11 @@ public class SelectMapper {
         return primarySqlSessionTemplate.selectList(nameSpace + ".readPrimaryRawData", requestedDate);
     }
 
+    public List<RawData> readMaria(){
+        return secondarySqlSessionTemplate.selectList(nameSpace+".");
+    }
+    public List<RawData> readPost(){
+        return thirdSqlSessionTemplate.selectList(nameSpace+".");
+    }
+
 }

@@ -22,7 +22,7 @@ public class SelectService {
     }
 
     public List<Sample> select() {
-        Query query = BoundParameterQuery.QueryBuilder.newQuery("SELECT * FROM \"Raw-Data\" LIMIT 1000")
+        Query query = BoundParameterQuery.QueryBuilder.newQuery("SELECT * FROM sample LIMIT 1000")
                 .forDatabase("mybucket")
                 .create();
 
@@ -34,7 +34,7 @@ public class SelectService {
     }
 
     public List<Sample> selectParam() {
-        Query query = BoundParameterQuery.QueryBuilder.newQuery("SELECT * FROM \"Raw-Data\" where pointId = \"{pointId}\" LIMIT 1000")
+        Query query = BoundParameterQuery.QueryBuilder.newQuery("SELECT * FROM sample where pointId = \"{pointId}\" LIMIT 1000")
                 .bind("{pointId}", "1")
                 .forDatabase("mybucket")
                 .create();
@@ -48,7 +48,7 @@ public class SelectService {
 
     public List<Sample> selectRange() {
 
-        Query query = BoundParameterQuery.QueryBuilder.newQuery("SELECT * FROM \"Raw-Data\" where time >= '2022-01-03 00:00:00' LIMIT 1000")
+        Query query = BoundParameterQuery.QueryBuilder.newQuery("SELECT * FROM sample where time >= '2022-01-03 00:00:00' LIMIT 1000")
                 .forDatabase("mybucket")
                 .create();
         QueryResult queryResult = influxDBTemplate.query(query);

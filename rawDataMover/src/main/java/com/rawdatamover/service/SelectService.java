@@ -25,15 +25,20 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class SelectService {
     private final InfluxDBTemplate influxDBTemplate;
-private final SelectMapper selectMapper;
+    private final SelectMapper selectMapper;
 
-    public SelectService(InfluxDBTemplate influxDBTemplate,SelectMapper selectMapper){
+    public SelectService(InfluxDBTemplate influxDBTemplate, SelectMapper selectMapper) {
         this.influxDBTemplate = influxDBTemplate;
         this.selectMapper = selectMapper;
     }
 
-    public List<RawData> selectRange() {
-        Query query = BoundParameterQuery.QueryBuilder.newQuery("SELECT * FROM sample where time >= '2022-01-03 00:00:00' LIMIT 1000")
+    public List<RawData> selectInflux() {
+        Query query = BoundParameterQuery
+                .QueryBuilder
+                .newQuery("SELECT * " +
+                        "FROM sample " +
+                        "where time >= '2022-01-27 09:34:15'" +
+                        "and time <= '2022-02-09 08:27:47'")
                 .forDatabase("mybucket")
                 .create();
         QueryResult queryResult = influxDBTemplate.query(query);
@@ -41,12 +46,12 @@ private final SelectMapper selectMapper;
         return resultMapper.toPOJO(queryResult, RawData.class);
     }
 
-    public List<RawData> selectMaria(){
-
-        return null;
+    public List<RawData> selectMaria() {
+        return selectMapper.readMaria();
     }
-    public List<RawData> selectPost(){
-    return null;
+
+    public List<RawData> selectPost() {
+        return selectMapper.readPost();
     }
 
 
