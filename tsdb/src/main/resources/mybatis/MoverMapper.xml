@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsdb.mapper.MoverMapper">
+    <select id="primaryTest" resultType="int">
+        select 1
+    </select>
+
+    <select id="secondaryTest" resultType="int">
+        select 1
+    </select>
+
+    <select id="thirdTest" resultType="int">
+        select 1
+    </select>
+
+    <select id="readPrimaryRawData" resultType="RawData" parameterType="string">
+     <![CDATA[
+        select pointId,
+               truncate(value,5) as value,
+               DATE_FORMAT(measuredDate, '%Y-%m-%d %H:%i:%s') as 'measuredDate',
+               kafka_topic,
+               kafka_offset,
+               DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i:%s')    as 'createdAt'
+        from MeasuredRawData
+        where measuredDate >= DATE_FORMAT(#{requestedDate}, '%Y-%m-%d %H:%i:%s')
+          and measuredDate < DATE_FORMAT(date_add(#{requestedDate}, interval 10 minute), '%Y-%m-%d %H:%i:%s')
+        ]]>
+    </select>
+
+    <insert id="writeSecondaryRawData" parameterType="RawDataWrapper">
+        insert into MeasuredRawData(pointId, value, measuredDate, kafka_topic,kafka_offset,createdAt)
+        values
+        <foreach collection="rawDataList" item="data" separator=",">
+            (#{data.pointId},#{data.value},#{data.measuredDate},#{data.kafka_topic},#{data.kafka_offset},#{data.createdAt})
+        </foreach>
+        on duplicate key update
+        value = values(value),
+        kafka_topic = values(kafka_topic),
+        kafka_offset = values(kafka_offset),
+        createdAt = values(createdAt)
+    </insert>
+
+    <select id="read1minPrimaryRawData" resultType="RawData" parameterType="string">
+    <![CDATA[
+        select pointId,
+               truncate(value,5) as value,
+               DATE_FORMAT(measuredDate, '%Y-%m-%d %H:%i:%s') as 'measuredDate',
+               kafka_topic,
+               kafka_offset,
+               DATE_FORMAT(createdAt, '%Y-%m-%d %H:%i:%s')    as 'createdAt'
+        from MeasuredRawData
+        where measuredDate >= DATE_FORMAT(#{requestedDate}, '%Y-%m-%d %H:%i:%s')
+          and measuredDate < DATE_FORMAT(date_add(#{requestedDate}, interval 1 minute), '%Y-%m-%d %H:%i:%s')
+        ]]>
+    </select>
+
+    <insert id="writeThirdRawData" parameterType="RawDataWrapper">
+        insert into public.hyper_measuredRawData(pointId, value, measuredDate)
+        values
+        <foreach collection="rawDataList" item="data" separator=",">
+            (#{data.pointId},#{data.value},to_timestamp(#{data.measuredDate},'YYYY-MM-DD HH24:MI:SS')::timestamptz)
+        </foreach>
+    </insert>
+
+
+</mapper>
